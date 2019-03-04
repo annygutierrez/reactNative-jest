@@ -5,7 +5,8 @@ import Profile from './src/Profile';
 export default class App extends Component {
 
   state = {
-    text: 'hello'
+    text: 'hello',
+    data: ''
   }
 
   getNextValue(text) {
@@ -16,15 +17,25 @@ export default class App extends Component {
     this.setState({ text: text + '!!!' });
   }
 
+  change(text) {
+    this.setState({data: text})
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <TextInput
-          placeholder='Write some code'
-          style={styles.input}
-          value={this.state.text}
-          onChangeText={(text) => this.setStateFunction(text)} />
-        <Profile />
+          testID={'username'}
+          onChangeText={(text) => this.change(text)}
+          style={{ backgroundColor: 'gray', marginBottom: 15, width: '80%' }}
+          placeholder="Enter Username"
+        />
+        <TextInput
+          testID={'password'}
+          onChangeText={(text) => this.change(text)}
+          style={{ backgroundColor: 'red', width: '80%' }}
+          placeholder="Enter Password"
+        />
       </View>
     );
   }
